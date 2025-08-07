@@ -65,11 +65,11 @@ export const addProductFormElements = [
     name: "category",
     componentType: "select",
     options: [
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
-      { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
+      { id: "organic-clothing", label: "Organic Clothing" },
+      { id: "eco-home", label: "Eco Home" },
+      { id: "natural-beauty", label: "Natural Beauty" },
+      { id: "sustainable-food", label: "Sustainable Food" },
+      { id: "renewable-energy", label: "Renewable Energy" },
     ],
   },
   {
@@ -77,12 +77,12 @@ export const addProductFormElements = [
     name: "brand",
     componentType: "select",
     options: [
-      { id: "nike", label: "Nike" },
-      { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
-      { id: "levi", label: "Levi's" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
+      { id: "patagonia", label: "Patagonia" },
+      { id: "seventh-generation", label: "Seventh Generation" },
+      { id: "grove-collaborative", label: "Grove Collaborative" },
+      { id: "earth-hero", label: "Earth Hero" },
+      { id: "bamboo-earth", label: "Bamboo Earth" },
+      { id: "green-toys", label: "Green Toys" },
     ],
   },
   {
@@ -116,32 +116,32 @@ export const shoppingViewHeaderMenuItems = [
   },
   {
     id: "products",
-    label: "Products",
+    label: "All Products",
     path: "/shop/listing",
   },
   {
-    id: "men",
-    label: "Men",
+    id: "organic-clothing",
+    label: "Organic Clothing",
     path: "/shop/listing",
   },
   {
-    id: "women",
-    label: "Women",
+    id: "eco-home",
+    label: "Eco Home",
     path: "/shop/listing",
   },
   {
-    id: "kids",
-    label: "Kids",
+    id: "natural-beauty",
+    label: "Natural Beauty",
     path: "/shop/listing",
   },
   {
-    id: "footwear",
-    label: "Footwear",
+    id: "sustainable-food",
+    label: "Sustainable Food",
     path: "/shop/listing",
   },
   {
-    id: "accessories",
-    label: "Accessories",
+    id: "renewable-energy",
+    label: "Renewable Energy",
     path: "/shop/listing",
   },
   {
@@ -152,37 +152,37 @@ export const shoppingViewHeaderMenuItems = [
 ];
 
 export const categoryOptionsMap = {
-  men: "Men",
-  women: "Women",
-  kids: "Kids",
-  accessories: "Accessories",
-  footwear: "Footwear",
+  "organic-clothing": "Organic Clothing",
+  "eco-home": "Eco Home", 
+  "natural-beauty": "Natural Beauty",
+  "sustainable-food": "Sustainable Food",
+  "renewable-energy": "Renewable Energy",
 };
 
 export const brandOptionsMap = {
-  nike: "Nike",
-  adidas: "Adidas",
-  puma: "Puma",
-  levi: "Levi",
-  zara: "Zara",
-  "h&m": "H&M",
+  "patagonia": "Patagonia",
+  "seventh-generation": "Seventh Generation",
+  "grove-collaborative": "Grove Collaborative",
+  "earth-hero": "Earth Hero",
+  "bamboo-earth": "Bamboo Earth",
+  "green-toys": "Green Toys",
 };
 
 export const filterOptions = {
   category: [
-    { id: "men", label: "Men" },
-    { id: "women", label: "Women" },
-    { id: "kids", label: "Kids" },
-    { id: "accessories", label: "Accessories" },
-    { id: "footwear", label: "Footwear" },
+    { id: "organic-clothing", label: "Organic Clothing" },
+    { id: "eco-home", label: "Eco Home" },
+    { id: "natural-beauty", label: "Natural Beauty" },
+    { id: "sustainable-food", label: "Sustainable Food" },
+    { id: "renewable-energy", label: "Renewable Energy" },
   ],
   brand: [
-    { id: "nike", label: "Nike" },
-    { id: "adidas", label: "Adidas" },
-    { id: "puma", label: "Puma" },
-    { id: "levi", label: "Levi's" },
-    { id: "zara", label: "Zara" },
-    { id: "h&m", label: "H&M" },
+    { id: "patagonia", label: "Patagonia" },
+    { id: "seventh-generation", label: "Seventh Generation" },
+    { id: "grove-collaborative", label: "Grove Collaborative" },
+    { id: "earth-hero", label: "Earth Hero" },
+    { id: "bamboo-earth", label: "Bamboo Earth" },
+    { id: "green-toys", label: "Green Toys" },
   ],
 };
 

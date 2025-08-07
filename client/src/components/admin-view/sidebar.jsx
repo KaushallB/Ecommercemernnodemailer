@@ -67,13 +67,13 @@ function AdminSideBar({ open, setOpen }) {
         <SheetContent side="left" className="w-64 bg-green-600">
           <div className="flex flex-col h-full">
             <SheetHeader className="border-b border-green-500">
-              <SheetTitle className="flex gap-2 mt-5 mb-5 text-white">
+              <SheetTitle className="flex gap-2 mt-5 mb-5 text-white text-2xl font-extrabold">
                 <img 
                   src="/assets/logo.png" 
                   alt="EcoCart Logo" 
                   className="w-8 h-8 object-contain"
                 />
-                <h1 className="text-2xl font-extrabold">EcoCart Admin Panel</h1>
+                EcoCart Admin Panel
               </SheetTitle>
             </SheetHeader>
             <MenuItems setOpen={setOpen} />

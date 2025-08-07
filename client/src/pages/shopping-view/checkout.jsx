@@ -188,27 +188,38 @@ function ShoppingCheckout() {
   }
 
   // Handle eSewa payment redirection
-  if (esewaPaymentData && esewaUrl) {
-    // Create a form and submit it to eSewa
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = esewaUrl;
+  useEffect(() => {
+    if (esewaPaymentData && esewaUrl) {
+      console.log("eSewa payment data received:", esewaPaymentData);
+      console.log("eSewa URL:", esewaUrl);
+      
+      // Create a form and submit it to eSewa
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = esewaUrl;
 
-    Object.keys(esewaPaymentData).forEach(key => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = esewaPaymentData[key];
-      form.appendChild(input);
-    });
+      Object.keys(esewaPaymentData).forEach(key => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = esewaPaymentData[key];
+        form.appendChild(input);
+      });
 
-    document.body.appendChild(form);
-    form.submit();
-  }
+      document.body.appendChild(form);
+      form.submit();
+      
+      // Clean up the form
+      document.body.removeChild(form);
+    }
+  }, [esewaPaymentData, esewaUrl]);
 
-  if (approvalURL) {
-    window.location.href = approvalURL;
-  }
+  // Handle PayPal approval URL redirection
+  useEffect(() => {
+    if (approvalURL) {
+      window.location.href = approvalURL;
+    }
+  }, [approvalURL]);
 
   return (
     <div className="flex flex-col">

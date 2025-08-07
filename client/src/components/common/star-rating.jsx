@@ -3,11 +3,14 @@ import { Button } from "../ui/button";
 
 function StarRatingComponent({ rating, handleRatingChange }) {
   console.log(rating, "rating");
+  
+  const safeRating = rating || 0;
 
   return [1, 2, 3, 4, 5].map((star) => (
     <Button
+      key={star}
       className={`p-2 rounded-full transition-colors ${
-        star <= rating
+        star <= safeRating
           ? "text-yellow-500 hover:bg-black"
           : "text-black hover:bg-primary hover:text-primary-foreground"
       }`}
@@ -17,7 +20,7 @@ function StarRatingComponent({ rating, handleRatingChange }) {
     >
       <StarIcon
         className={`w-6 h-6 ${
-          star <= rating ? "fill-yellow-500" : "fill-black"
+          star <= safeRating ? "fill-yellow-500" : "fill-black"
         }`}
       />
     </Button>

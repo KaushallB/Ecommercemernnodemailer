@@ -61,6 +61,15 @@ function AdminProducts() {
             setFormData(initialFormData);
             setOpenCreateProductsDialog(false);
             setCurrentEditedId(null);
+            toast({
+              title: "✅ Product updated successfully",
+              variant: "success",
+            });
+          } else {
+            toast({
+              title: "❌ Failed to update product",
+              variant: "destructive",
+            });
           }
         })
       : dispatch(
@@ -75,7 +84,13 @@ function AdminProducts() {
             setImageFile(null);
             setFormData(initialFormData);
             toast({
-              title: "Product add successfully",
+              title: "✅ Product added successfully",
+              variant: "success",
+            });
+          } else {
+            toast({
+              title: "❌ Failed to add product",
+              variant: "destructive",
             });
           }
         });
@@ -85,6 +100,15 @@ function AdminProducts() {
     dispatch(deleteProduct(getCurrentProductId)).then((data) => {
       if (data?.payload?.success) {
         dispatch(fetchAllProducts());
+        toast({
+          title: "✅ Product deleted successfully",
+          variant: "success",
+        });
+      } else {
+        toast({
+          title: "❌ Failed to delete product",
+          variant: "destructive",
+        });
       }
     });
   }
@@ -113,6 +137,7 @@ function AdminProducts() {
         {productList && productList.length > 0
           ? productList.map((productItem) => (
               <AdminProductTile
+                key={productItem._id}
                 setFormData={setFormData}
                 setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                 setCurrentEditedId={setCurrentEditedId}

@@ -54,15 +54,6 @@ const addProduct = async (req, res) => {
       price,
       salePrice,
       totalStock,
-      averageReview,
-      isOrganic: isOrganic || false,
-      sustainabilityRating: sustainabilityRating || 1,
-      carbonFootprint: carbonFootprint || 'medium',
-      certifications: certifications || [],
-      origin: origin || 'Nepal',
-      expiryDate,
-      weight,
-      packagingType: packagingType || 'biodegradable'
     });
 
     await newlyCreatedProduct.save();
@@ -177,7 +168,7 @@ const deleteProduct = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Product delete successfully",
+      message: "Product deleted successfully",
     });
   } catch (e) {
     console.log(e);

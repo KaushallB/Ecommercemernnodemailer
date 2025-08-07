@@ -22,11 +22,11 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
   return (
     <SheetContent className="sm:max-w-md">
       <SheetHeader>
-        <SheetTitle>🌱 Your Eco Cart</SheetTitle>
+        <SheetTitle> Your Eco Cart</SheetTitle>
       </SheetHeader>
       <div className="mt-8 space-y-4">
         {cartItems && cartItems.length > 0
-          ? cartItems.map((item) => <UserCartItemsContent cartItem={item} />)
+          ? cartItems.map((item) => <UserCartItemsContent key={item.productId} cartItem={item} />)
           : <p className="text-gray-500 text-center py-8">Your eco-friendly cart is empty</p>}
       </div>
       <div className="mt-8 space-y-4">
@@ -42,7 +42,7 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
         }}
         className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white h-10 px-4 py-2 rounded-md text-sm font-medium transition-colors"
       >
-        🌿 Checkout Eco-Friendly
+         Checkout Eco-Friendly
       </button>
     </SheetContent>
   );

@@ -1,7 +1,7 @@
 import { StarIcon } from "lucide-react";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { Dialog, DialogContent } from "../ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "../ui/dialog";
 import { Separator } from "../ui/separator";
 import { Input } from "../ui/input";
 import { useDispatch, useSelector } from "react-redux";
@@ -72,19 +72,27 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   }
 
   function handleAddReview() {
+    if (!user || !productDetails || !rating || !reviewMsg.trim()) {
+      toast({
+        title: "Please fill all fields",
+        variant: "destructive"
+      });
+      return;
+    }
+
     dispatch(
       addReview({
-        productId: productDetails?._id,
-        userId: user?.id,
-        userName: user?.userName,
+        productId: productDetails._id,
+        userId: user.id,
+        userName: user.userName,
         reviewMessage: reviewMsg,
         reviewValue: rating,
       })
     ).then((data) => {
-      if (data.payload.success) {
+      if (data?.payload?.success) {
         setRating(0);
         setReviewMsg("");
-        dispatch(getReviews(productDetails?._id));
+        dispatch(getReviews(productDetails._id));
         toast({
           title: "Review added successfully!",
         });
@@ -93,20 +101,26 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   }
 
   useEffect(() => {
-    if (productDetails !== null) dispatch(getReviews(productDetails?._id));
-  }, [productDetails]);
+    if (productDetails && productDetails._id) {
+      dispatch(getReviews(productDetails._id));
+    }
+  }, [productDetails, dispatch]);
 
   console.log(reviews, "reviews");
 
   const averageReview =
     reviews && reviews.length > 0
-      ? reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) /
+      ? reviews.reduce((sum, reviewItem) => sum + (reviewItem?.reviewValue || 0), 0) /
         reviews.length
       : 0;
 
   return (
     <Dialog open={open} onOpenChange={handleDialogClose}>
       <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
+        <DialogTitle className="sr-only">Product Details</DialogTitle>
+        <DialogDescription className="sr-only">
+          View product details, add to cart, and leave reviews
+        </DialogDescription>
         <div className="relative overflow-hidden rounded-lg">
           <img
             src={productDetails?.image}
@@ -168,23 +182,23 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
           <div className="max-h-[300px] overflow-auto">
             <h2 className="text-xl font-bold mb-4">Reviews</h2>
             <div className="grid gap-6">
-              {reviews && reviews.length > 0 ? (
+              {reviews && Array.isArray(reviews) && reviews.length > 0 ? (
                 reviews.map((reviewItem) => (
-                  <div className="flex gap-4">
+                  <div key={reviewItem._id} className="flex gap-4">
                     <Avatar className="w-10 h-10 border">
                       <AvatarFallback>
-                        {reviewItem?.userName[0].toUpperCase()}
+                        {reviewItem?.userName?.[0]?.toUpperCase() || 'U'}
                       </AvatarFallback>
                     </Avatar>
                     <div className="grid gap-1">
                       <div className="flex items-center gap-2">
-                        <h3 className="font-bold">{reviewItem?.userName}</h3>
+                        <h3 className="font-bold">{reviewItem?.userName || 'Anonymous'}</h3>
                       </div>
                       <div className="flex items-center gap-0.5">
-                        <StarRatingComponent rating={reviewItem?.reviewValue} />
+                        <StarRatingComponent rating={reviewItem?.reviewValue || 0} />
                       </div>
                       <p className="text-muted-foreground">
-                        {reviewItem.reviewMessage}
+                        {reviewItem?.reviewMessage || 'No message'}
                       </p>
                     </div>
                   </div>
