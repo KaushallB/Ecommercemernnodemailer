@@ -22,7 +22,7 @@ function ShoppingCheckout() {
   const dispatch = useDispatch();
   const { toast } = useToast();
 
-  console.log(currentSelectedAddress, "cartItems");
+  // console.log(currentSelectedAddress, "cartItems");
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
@@ -55,7 +55,7 @@ function ShoppingCheckout() {
           setFreeDeliveryThreshold(response.data.data.freeDeliveryThreshold);
         }
       } catch (error) {
-        console.log("Error fetching delivery charges:", error);
+        // console.log("Error fetching delivery charges:", error);
         // Keep default values if API fails
       }
     };
@@ -172,7 +172,7 @@ function ShoppingCheckout() {
     };
 
     dispatch(createNewOrder(orderData)).then((data) => {
-      console.log(data, "esewa payment");
+      // console.log(data, "esewa payment");
       if (data?.payload?.success) {
         setIsPaymemntStart(true);
         setCurrentSelectedAddress(null);
@@ -190,8 +190,8 @@ function ShoppingCheckout() {
   // Handle eSewa payment redirection
   useEffect(() => {
     if (esewaPaymentData && esewaUrl) {
-      console.log("eSewa payment data received:", esewaPaymentData);
-      console.log("eSewa URL:", esewaUrl);
+      // console.log("eSewa payment data received:", esewaPaymentData);
+      // console.log("eSewa URL:", esewaUrl);
       
       // Create a form and submit it to eSewa
       const form = document.createElement('form');

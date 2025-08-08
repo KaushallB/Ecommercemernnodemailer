@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   ShoppingBasket,
   Settings,
+  Mail,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +28,12 @@ const adminSidebarMenuItems = [
     label: "Orders",
     path: "/admin/orders",
     icon: <BadgeCheck />,
+  },
+  {
+    id: "email-marketing",
+    label: "Email Marketing",
+    path: "/admin/email-marketing",
+    icon: <Mail />,
   },
   {
     id: "settings",

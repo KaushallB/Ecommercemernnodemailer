@@ -1,0 +1,35 @@
+@startuml eSewa_Simple_Payment_Flow
+!theme plain
+
+title eSewa Payment Integration - Simplified Flow
+skinparam backgroundColor #f8f9fa
+
+participant "Customer" as C #e8f5e8
+participant "App" as A #d4edda
+participant "eSewa" as E #fff3cd
+participant "Database" as D #d1ecf1
+
+== Order & Payment ==
+C -> A: 1. Checkout with eSewa
+A -> D: 2. Create pending order
+A -> A: 3. Generate payment data + signature
+A -> C: 4. Redirect to eSewa
+
+== eSewa Processing ==
+C -> E: 5. Enter credentials & pay
+E -> E: 6. Process payment
+
+== Verification ==
+alt Payment Success
+    E -> C: 7. Redirect to app
+    C -> A: 8. Payment callback
+    A -> E: 9. Verify payment
+    E -> A: 10. Confirmation
+    A -> D: 11. Update order status
+    A -> C: 12. Success page
+else Payment Failed
+    E -> C: 7. Redirect to failure
+    A -> C: 8. Show error message
+end
+
+@enduml

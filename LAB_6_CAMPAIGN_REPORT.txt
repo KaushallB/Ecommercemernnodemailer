@@ -1,0 +1,152 @@
+LAB WORK 6: EMAIL MARKETING CAMPAIGN DESIGN AND ANALYSIS
+═══════════════════════════════════════════════════════════════
+
+CAMPAIGN PLANNING
+═══════════════════════════════════════════════════════════════
+
+1. PRODUCT/SERVICE TO PROMOTE:
+   Product: EcoCart Sustainable Shopping Platform
+   Campaign Focus: "Green Friday Sale - Sustainable Products at 30% Off"
+
+2. CAMPAIGN GOAL:
+   Primary Objective: Increase sales of eco-friendly products
+   Secondary Objectives: 
+   - Drive traffic to EcoCart platform
+   - Increase customer engagement with sustainable shopping
+   - Build brand awareness for eco-conscious alternatives
+
+3. TARGET AUDIENCE:
+   Primary Target: College students aged 21-24
+   Reason for Choice: 
+   - Tech-savvy generation concerned about environmental impact
+   - Budget-conscious shoppers who appreciate discounts
+   - Early adopters of sustainable lifestyle choices
+   - Social media active demographic that can spread brand awareness
+
+AUDIENCE SEGMENTATION
+═══════════════════════════════════════════════════════════════
+
+Based on customers.csv analysis:
+
+SEGMENT 1: High-Engagement Users
+- Criteria: Engagement score ≥ 85 AND previous purchases ≥ 3
+- Members: 021bim002@sxc.edu.np (85 score, 3 purchases)
+           021bim013@sxc.edu.np (92 score, 5 purchases)
+           021bim061@sxc.edu.np (88 score, 4 purchases)
+- Strategy: Premium offers, early access to sales, loyalty rewards
+
+SEGMENT 2: Low-Engagement/New Users  
+- Criteria: Engagement score < 85 OR previous purchases < 3
+- Members: 021bim017@sxc.edu.np (78 score, 2 purchases)
+- Strategy: Welcome discounts, educational content about sustainability, incentives to increase engagement
+
+SEGMENTATION LOGIC:
+High-engagement customers are more likely to convert and can be targeted with exclusive offers. Low-engagement users need nurturing campaigns to build trust and increase purchase frequency.
+
+EMAIL DESIGN SPECIFICATIONS
+═══════════════════════════════════════════════════════════════
+
+SUBJECT LINE: "🌱 Green Friday Sale: 30% Off Eco-Products + Free Shipping!"
+
+EMAIL CONTENT STRUCTURE:
+1. Header: EcoCart logo with green color scheme
+2. Main Banner: "Green Friday Sale" with nature imagery
+3. Product Showcase: Featured sustainable products with discounts
+4. Call-to-Action: "Shop Now & Save the Planet"
+5. Benefits Section: Environmental impact of choosing eco-products
+6. Footer: Contact info, unsubscribe link, social media links
+
+KEY MESSAGING:
+- Sustainability meets affordability
+- Limited-time offer creates urgency
+- Environmental benefits highlighted
+- Student-friendly pricing emphasized
+
+SCHEDULING AND AUTOMATION PLAN
+═══════════════════════════════════════════════════════════════
+
+OPTIMAL SENDING TIME:
+- Best Day: Tuesday (highest engagement for students)
+- Best Time: 2:00 PM NPT (after lunch, before evening classes)
+- Rationale: Students check emails during afternoon breaks
+
+CAMPAIGN SCHEDULE:
+Week 1: Initial campaign launch
+- Day 1 (Tuesday): Main campaign email to all segments
+- Day 4 (Friday): Reminder email to non-openers
+
+Week 2: Follow-up campaigns
+- Day 8 (Tuesday): Thank you email to purchasers + cross-sell
+- Day 11 (Friday): Last chance email to non-converters
+
+AUTOMATION TRIGGERS:
+1. Cart Abandonment: Email sent 2 hours after abandonment
+2. Welcome Series: 3-email sequence for new subscribers
+3. Purchase Follow-up: Review request email 5 days post-purchase
+4. Re-engagement: Campaign for inactive users (no engagement in 30 days)
+
+PERFORMANCE ANALYSIS (Based on campaign_results.csv)
+═══════════════════════════════════════════════════════════════
+
+CAMPAIGN METRICS CALCULATION:
+
+Total Emails Sent: 4
+Total Opened: 3
+Total Clicked: 2  
+Total Bounced: 0
+Total Unsubscribed: 0
+
+PERFORMANCE METRICS:
+├─ Open Rate = Opened ÷ Total Sent = 3 ÷ 4 = 75.00%
+├─ Click-Through Rate = Clicked ÷ Opened = 2 ÷ 3 = 66.67%
+├─ Bounce Rate = Bounced ÷ Total Sent = 0 ÷ 4 = 0.00%
+└─ Unsubscribe Rate = Unsubscribed ÷ Total Sent = 0 ÷ 4 = 0.00%
+
+DETAILED PERFORMANCE TABLE:
+┌─────────────────────────┬────────┬─────────┬─────────┬──────────┬──────────────┐
+│ Recipient               │ Opened │ Clicked │ Bounced │ Unsub    │ Segment      │
+├─────────────────────────┼────────┼─────────┼─────────┼──────────┼──────────────┤
+│ 021bim002@sxc.edu.np   │   ✓    │    ✓    │    ✗    │    ✗     │ High-Engage  │
+│ 021bim013@sxc.edu.np   │   ✓    │    ✗    │    ✗    │    ✗     │ High-Engage  │
+│ 021bim017@sxc.edu.np   │   ✓    │    ✓    │    ✗    │    ✗     │ Low-Engage   │
+│ 021bim061@sxc.edu.np   │   ✗    │    ✗    │    ✗    │    ✗     │ High-Engage  │
+└─────────────────────────┴────────┴─────────┴─────────┴──────────┴──────────────┘
+
+SEGMENT PERFORMANCE ANALYSIS:
+High-Engagement Segment (3 recipients):
+- Open Rate: 66.67% (2/3 opened)
+- Click Rate: 50.00% (1/2 who opened clicked)
+
+Low-Engagement Segment (1 recipient):
+- Open Rate: 100% (1/1 opened)  
+- Click Rate: 100% (1/1 who opened clicked)
+
+INSIGHTS & RECOMMENDATIONS:
+═══════════════════════════════════════════════════════════════
+
+POSITIVE FINDINGS:
+✓ Excellent overall open rate (75%) - well above industry average of 21%
+✓ Outstanding click-through rate (66.67%) - industry average is 2.6%
+✓ Zero bounce rate indicates clean email list
+✓ Zero unsubscribe rate shows relevant content
+
+AREAS FOR IMPROVEMENT:
+⚠ One high-engagement user (021bim061@sxc.edu.np) didn't open email
+⚠ One high-engagement user opened but didn't click
+
+ACTION ITEMS:
+1. A/B test subject lines to improve open rates
+2. Personalize content based on previous purchase history
+3. Follow up with non-openers using different subject line
+4. Implement time-based sending optimization
+5. Create mobile-optimized email templates
+
+CAMPAIGN ROI PROJECTION:
+Assuming 50% conversion rate on clicks:
+- Potential conversions: 1 purchase
+- Average order value: Rs 2,000
+- Campaign revenue: Rs 2,000
+- Email marketing ROI: Positive with minimal costs
+
+CONCLUSION:
+The email campaign demonstrated exceptional performance metrics, significantly outperforming industry benchmarks. The high engagement rates indicate strong audience relevance and effective content design. Future campaigns should focus on improving open rates among high-engagement segments and expanding the customer base while maintaining quality engagement.

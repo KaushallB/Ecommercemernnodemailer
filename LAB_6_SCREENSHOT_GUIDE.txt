@@ -1,0 +1,47 @@
+Lab 6 Screenshot Documentation Guide:
+
+📸 REQUIRED SCREENSHOTS FOR EMAIL MARKETING LAB:
+
+1. **Email Template Design**:
+   - Screenshot of your order confirmation email in Gmail/Outlook
+   - Show the professional EcoCart branding and layout
+   - Highlight responsive design and eco-friendly messaging
+
+2. **Code Implementation**:
+   - Screenshot of email.js file showing SMTP configuration
+   - Screenshot of HTML email template code
+   - Screenshot of sendOrderConfirmationEmail function
+
+3. **Email Sending Functionality**:
+   - Screenshot of successful email sending in terminal/console
+   - Screenshot of email delivery confirmation
+   - Screenshot of actual received email in inbox
+
+4. **SMTP Configuration**:
+   - Screenshot of .env file (hide sensitive credentials)
+   - Screenshot of Nodemailer transporter setup
+   - Screenshot of email service configuration
+
+5. **Email Analytics** (if available):
+   - Screenshot of email delivery logs
+   - Screenshot of any email tracking data
+   - Screenshot of email open/delivery rates
+
+6. **Integration with Order Process**:
+   - Screenshot showing email trigger after order completion
+   - Screenshot of order confirmation flow
+   - Screenshot of customer receiving order email
+
+💡 **Quick Enhancement Ideas** (for better lab coverage):
+- Add email subscription signup form
+- Create newsletter template
+- Add email analytics tracking
+- Implement promotional email templates
+- Add customer segmentation for targeted emails
+
+🎯 **Lab Submission Strategy**:
+✅ Use your existing professional email system
+✅ Document it thoroughly with screenshots
+✅ Explain the technical implementation
+✅ Show the integration with order process
+✅ Highlight the professional design and branding

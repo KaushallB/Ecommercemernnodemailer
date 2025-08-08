@@ -8,6 +8,7 @@ import AdminProducts from "./pages/admin-view/products";
 import AdminOrders from "./pages/admin-view/orders";
 import AdminFeatures from "./pages/admin-view/features";
 import AdminSettings from "./pages/admin-view/settings";
+import AdminEmailMarketing from "./pages/admin-view/email-marketing";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -21,6 +22,7 @@ import { useEffect } from "react";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "@/components/ui/skeleton";
 import EsewaReturnPage from "./pages/shopping-view/esewa-return";
+import EsewaCancelPage from "./pages/shopping-view/esewa-cancel";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
 
@@ -36,7 +38,7 @@ function App() {
 
   if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
 
-  console.log(isLoading, user);
+  // console.log(isLoading, user);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
@@ -72,6 +74,7 @@ function App() {
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
           <Route path="orders" element={<AdminOrders />} />
+          <Route path="email-marketing" element={<AdminEmailMarketing />} />
           <Route path="features" element={<AdminFeatures />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
@@ -88,6 +91,7 @@ function App() {
           <Route path="checkout" element={<ShoppingCheckout />} />
           <Route path="account" element={<ShoppingAccount />} />
           <Route path="esewa-return" element={<EsewaReturnPage />} />
+          <Route path="esewa-cancel" element={<EsewaCancelPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} />
         </Route>

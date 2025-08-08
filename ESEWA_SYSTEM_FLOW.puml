@@ -1,0 +1,91 @@
+@startuml eSewa_Payment_System_Flow
+!theme plain
+
+title eSewa Payment Gateway Integration - System Flow Diagram
+skinparam backgroundColor #f8f9fa
+skinparam titleFontSize 16
+skinparam titleFontColor #059669
+
+participant "Customer\nBrowser" as Customer #e8f5e8
+participant "E-commerce\nApplication" as App #d4edda
+participant "eSewa\nGateway" as eSewa #fff3cd
+participant "Database\nServer" as DB #d1ecf1
+
+== Order Initiation Phase ==
+Customer -> App: 1. Add products to cart
+Customer -> App: 2. Proceed to checkout
+Customer -> App: 3. Select delivery address
+Customer -> App: 4. Choose eSewa payment method
+Customer -> App: 5. Click "Proceed to Payment"
+
+== Order Processing Phase ==
+App -> DB: 6. Create order with pending status
+note right of DB: Order saved with\npaymentStatus: "pending"
+
+App -> App: 7. Generate eSewa payment data
+note right of App: - Create transaction UUID\n- Calculate amounts\n- Set callback URLs
+
+App -> App: 8. Generate HMAC-SHA256 signature
+note right of App: message = "total_amount=100,\ntransaction_uuid=ORDER_ID,\nproduct_code=MERCHANT_ID"
+
+App -> Customer: 9. Return payment form data
+note left of Customer: Payment data includes:\n- amount, transaction_uuid\n- product_code, signature\n- success_url, failure_url
+
+== eSewa Payment Processing Phase ==
+Customer -> eSewa: 10. Redirect to eSewa gateway
+note right of eSewa: Dynamic form submission\nwith payment parameters
+
+Customer -> eSewa: 11. Enter eSewa credentials
+eSewa -> eSewa: 12. Validate account & balance
+eSewa -> eSewa: 13. Process payment transaction
+
+== Payment Completion & Verification Phase ==
+alt Payment Successful
+    eSewa -> Customer: 14. Redirect to success URL
+    note left of Customer: Callback URL:\n/shop/esewa-return?\noid=ORDER_ID&\namt=AMOUNT&\nrefId=REFERENCE_ID
+    
+    Customer -> App: 15. Payment callback with parameters
+    App -> App: 16. Extract payment parameters (oid, amt, refId)
+    App -> eSewa: 17. Verify payment with eSewa API
+    note right of eSewa: Verification includes:\n- Amount validation\n- Transaction status check\n- HMAC signature verify
+    
+    eSewa -> App: 18. Verification response
+    
+    alt Verification Successful
+        App -> DB: 19. Update order status to "confirmed"
+        App -> DB: 20. Update payment status to "paid"
+        App -> DB: 21. Reduce product inventory
+        App -> DB: 22. Clear customer cart
+        App -> App: 23. Send confirmation email
+        App -> Customer: 24. Redirect to success page
+        note left of Customer: Order confirmed!\nEmail sent to customer
+    else Verification Failed
+        App -> DB: 25. Keep order status as "pending"
+        App -> Customer: 26. Show verification error
+        note left of Customer: Payment verification failed\nContact support
+    end
+    
+else Payment Failed
+    eSewa -> Customer: 27. Redirect to failure URL
+    Customer -> App: 28. Payment failure callback
+    App -> Customer: 29. Show payment failed message
+    note left of Customer: Payment failed\nTry again or use different method
+end
+
+== Security & Error Handling ==
+note over Customer, DB
+**Security Measures:**
+1. HMAC-SHA256 signature verification
+2. Server-side payment validation
+3. Secure HTTPS communication
+4. Amount cross-verification
+5. Transaction UUID uniqueness
+
+**Error Handling:**
+- Network timeout handling
+- Payment verification retry
+- Comprehensive error logging
+- Customer support notifications
+end note
+
+@enduml

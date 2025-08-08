@@ -1,5 +1,5 @@
 const { createEsewaPayment, verifyEsewaPayment } = require("../../helpers/esewa");
-const { sendEmail } = require("../../helpers/email");
+const { sendEmail, sendOrderConfirmationEmail, sendOrderShippedEmail, sendOrderDeliveredEmail } = require("../../helpers/email");
 const Order = require("../../models/Order");
 const Cart = require("../../models/Cart");
 const Product = require("../../models/Product");
@@ -40,31 +40,28 @@ const createOrder = async (req, res) => {
 
     await newlyCreatedOrder.save();
 
-    // Get user details for email
-    const user = await User.findById(userId);
-
-    // Send confirmation email
-    if (user && user.email) {
-      try {
-        await sendEmail(user.email, 'orderConfirmation', {
-          orderId: newlyCreatedOrder._id,
-          customerName: user.userName,
-          orderDate: orderDate,
-          paymentMethod: paymentMethod || "esewa",
-          totalAmount,
-          orderStatus: "pending",
-          cartItems,
-          addressInfo
-        });
-      } catch (emailError) {
-        console.log("Email sending failed:", emailError);
-        // Don't fail the order if email fails
-      }
-    }
-
     // Handle different payment methods
     if (paymentMethod === "cod") {
-      // For Cash on Delivery, no payment processing needed
+      // For Cash on Delivery, send email immediately as payment is not required
+      const user = await User.findById(userId);
+      
+      if (user && user.email) {
+        try {
+          await sendOrderConfirmationEmail(user.email, {
+            orderId: newlyCreatedOrder._id,
+            customerName: user.userName,
+            orderDate: orderDate,
+            paymentMethod: "cod",
+            totalAmount,
+            orderStatus: "confirmed",
+            cartItems,
+            addressInfo
+          });
+        } catch (emailError) {
+          console.log("Email sending failed:", emailError);
+        }
+      }
+      
       // Clear the cart after successful order creation
       await Cart.findByIdAndDelete(cartId);
       
@@ -145,6 +142,26 @@ const capturePayment = async (req, res) => {
     await Cart.findByIdAndDelete(getCartId);
 
     await order.save();
+
+    // Send confirmation email only after payment verification succeeds
+    const user = await User.findById(order.userId);
+    if (user && user.email) {
+      try {
+        await sendOrderConfirmationEmail(user.email, {
+          orderId: order._id,
+          customerName: user.userName,
+          orderDate: order.orderDate,
+          paymentMethod: "esewa",
+          totalAmount: order.totalAmount,
+          orderStatus: "confirmed",
+          cartItems: order.cartItems,
+          addressInfo: order.addressInfo
+        });
+      } catch (emailError) {
+        console.log("Email sending failed:", emailError);
+        // Don't fail the order if email fails
+      }
+    }
 
     res.status(200).json({
       success: true,
